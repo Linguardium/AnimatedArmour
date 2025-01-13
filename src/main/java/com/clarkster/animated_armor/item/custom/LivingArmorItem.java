@@ -1,48 +1,83 @@
 package com.clarkster.animated_armor.item.custom;
 
-import com.clarkster.animated_armor.AnimatedArmorMod;
-import com.clarkster.animated_armor.item.ModItems;
+import com.clarkster.animated_armor.ModIdentifiers;
+import com.clarkster.animated_armor.entity.client.armor.LivingArmorRenderer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.decoration.ArmorStandEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.Item;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.*;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.builder.ILoopType;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.animatable.client.RenderProvider;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.model.DefaultedGeoModel;
+import software.bernie.geckolib.renderer.GeoArmorRenderer;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
-public class LivingArmorItem extends ArmorItem implements IAnimatable {
+public class LivingArmorItem extends ArmorItem implements GeoItem, AnimationController.AnimationStateHandler<LivingArmorItem> {
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    private final Supplier<Object> renderProvider = GeoItem.makeRenderer(this);
 
-    private AnimationFactory factory = GeckoLibUtil.createFactory(this);
-    public LivingArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
-        super(material, slot, settings);
+    public LivingArmorItem(ArmorMaterial material, Type type, Settings settings) {
+        super(material, type, settings);
     }
 
-    private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("living_armor", ILoopType.EDefaultLoopTypes.LOOP));
+    @Override
+    public PlayState handle(AnimationState<LivingArmorItem> state) {
+        state.getController().setAnimation(RawAnimation.begin().thenPlay("idle"));
         return PlayState.CONTINUE;
     }
 
+//    @Override
+//    public AnimationFactory getFactory() {
+//        return this.factory;
+//    }
+
+    @Environment(EnvType.CLIENT)
     @Override
-    public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this, "controller", 20, this::predicate));
+    public void createRenderer(Consumer<Object> consumer) {
+        consumer.accept(new RenderProvider() {
+            private GeoArmorRenderer<LivingArmorItem> renderer;
+
+            @Override
+            public @NotNull  BipedEntityModel<LivingEntity> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, BipedEntityModel<LivingEntity> original) {
+                if (this.renderer == null) {
+                    this.renderer = new LivingArmorRenderer.LivingArmorGeoRenderer();
+                }
+
+                this.renderer.prepForRender(livingEntity, itemStack, equipmentSlot, original);
+                return this.renderer;
+            }
+        });
     }
 
     @Override
-    public AnimationFactory getFactory() {
-        return this.factory;
+    public Supplier<Object> getRenderProvider() {
+        return this.renderProvider;
     }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "controller", 20, this));
+
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.cache;
+    }
+
 }
 

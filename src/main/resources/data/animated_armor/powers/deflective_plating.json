@@ -57,7 +57,5 @@
       "comparison": "<",
       "compare_to": 4
     }
-  },
-  "name": "Deflective Plating",
-  "description": "You take no damage from regular arrows while your armor is fully intact."
+  }
 }

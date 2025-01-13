@@ -5,7 +5,5 @@
     "attribute": "minecraft:generic.movement_speed",
     "operation": "multiply_base",
     "value": -0.2
-  },
-  "name": "Disembodied",
-  "description": "Your lack of limbs causes you to move 20% slower than a human. However, you have greater effective reach while your chestplate is intact."
+  }
 }

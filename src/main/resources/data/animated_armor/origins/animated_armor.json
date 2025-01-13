@@ -22,7 +22,5 @@
   ],
   "icon": "animated_armor:living_chestplate",
   "order": 10,
-  "impact": 2,
-  "name": "Animated Armor",
-  "description": "A sentient suit of magically animated armor, brought to life by unknown arcane enchantments."
+  "impact": 2
 }

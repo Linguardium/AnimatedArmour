@@ -122,24 +122,22 @@
       "change": 12
       }
   },
-  "name": "Steel Constitution",
-  "description": "You do not take health damage. Instead, you have a meter that displays the overall durability of your armour, which can only take one point of damage per attack.",
   "badges": [
     {
       "sprite": "origins:textures/gui/badge/info.png",
-      "text": "For each 25% of durability you lose, a piece of your armor will break. Armor will always break in this order: Head, Chest, Legs, Feet."
+      "text": "badge.animated_armor.armor_break.tooltip"
     },
     {
       "sprite": "origins:textures/gui/badge/info.png",
-      "text": "Losing your Helmet will only render entities close to you."
+      "text": "badge.animated_armor.nearsighted.tooltip"
     },
     {
       "sprite": "origins:textures/gui/badge/info.png",
-      "text": "Losing your Chestplate will greatly reduce your reach and damage."
+      "text": "badge.animated_armor.weakened.tooltip"
     },
     {
       "sprite": "origins:textures/gui/badge/info.png",
-      "text": "Losing your Leggings gives you a boost in movement speed."
+      "text": "badge.animated_armor.crippled.tooltip"
     }
   ]
 }

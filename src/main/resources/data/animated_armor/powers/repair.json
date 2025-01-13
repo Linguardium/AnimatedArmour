@@ -145,12 +145,10 @@
       ]
     }
   },
-  "name": "Metallurgy",
-  "description": "Your body cannot be naturally or magically mended. You instead repair by consuming Iron Ingots.",
   "badges": [
     {
       "sprite": "origins:textures/gui/badge/active.png",
-      "text": "Active ability, use with %s while holding a Iron Ingot in your hands."
+      "text": "badge.animated_armor.repair.tooltip"
     }
   ]
 }

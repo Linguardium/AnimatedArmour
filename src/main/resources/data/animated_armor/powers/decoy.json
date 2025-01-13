@@ -56,7 +56,5 @@
   "key": {
     "key": "key.origins.secondary_active",
     "continuous": false
-  },
-  "name": "Decoy",
-  "description": "Become an immobile suit of armor. Mobs will not target you in this state."
+  }
 }

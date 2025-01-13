@@ -1,7 +1,5 @@
 {
     "type": "origins:modify_damage_taken",
-    "name": "Frost Ward",
-    "description": "You are immune to freeze damage.",
     "damage_condition": {
         "type": "origins:name",
         "name": "freeze"

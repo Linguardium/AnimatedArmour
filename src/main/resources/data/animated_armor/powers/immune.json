@@ -45,7 +45,5 @@
       "permission_level": 4
     },
     "interval": 1
-  },
-  "name": "Antimagic Ward",
-  "description": "You are immune to all potion and status effects."
+  }
 }

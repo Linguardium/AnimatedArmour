@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.1-SNAPSHOT'
+	id 'fabric-loom' version '1.9-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -13,16 +13,23 @@ group = project.maven_group
 repositories {
 	// Add repositories to retrieve artifacts from in here.
 	//ORIGINS REPO
+	// PlayerAbilityLib repo. required for origins dependencies
 	maven {
-		name = "Ladysnake Libs"
-		url = 'https://ladysnake.jfrog.io/artifactory/mods'
-	}
-	maven {
-		url = 'https://maven.cafeteria.dev'
+		name = 'Ladysnake Mods'
+		url = 'https://maven.ladysnake.org/releases'
 		content {
-			includeGroup 'net.adriantodt.fabricmc'
+			includeGroup 'io.github.ladysnake'
+			includeGroup 'dev.onyxstudios.cardinal-components-api'
+			includeGroupByRegex 'org\\.ladysnake.*'
 		}
 	}
+//	maven {
+//		url = 'https://maven.cafeteria.dev'
+//		content {
+//			includeGroup 'net.adriantodt.fabricmc'
+//		}
+//	}
+	// Reach Entity Attributes repo. Required for origin dependencies
 	maven {
 		url "https://maven.jamieswhiteshirt.com/libs-release"
 		content {
@@ -32,15 +39,20 @@ repositories {
 	maven {
 		url "https://jitpack.io"
 	}
+	// Clothconfig repo. required for origins mod dependencies
 	maven {
 		url "https://maven.shedaniel.me/"
 	}
+//	maven {
+//		url "https://maven.terraformersmc.com/"
+//	}
 	maven {
-		url "https://maven.terraformersmc.com/"
-	}
-	//GECKOLIB REPO
-	maven {
+		name = 'GeckoLib'
 		url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+		content {
+			includeGroupByRegex("software\\.bernie.*")
+			includeGroup("com.eliotlash.mclib")
+		}
 	}
 	// You should only use this when depending on other mods because
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
@@ -54,18 +66,27 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	//ORIGINS DEPENDENCIES
-	modImplementation "com.github.apace100:origins-fabric:${project.origins_version}"
+	modImplementation("com.github.apace100:apoli:${project.apoli_version}") {
+		exclude group: "com.terraformersmc" // exclude modmenu
+		exclude group: "dev.onyxstudios.cardinal-components-api" // old cardinal components
+	}
+	modImplementation("com.github.apace100:origins-fabric:${project.origins_version}") {
+		exclude group: "com.terraformersmc" // exclude modmenu
+		exclude group: "dev.onyxstudios.cardinal-components-api" // old cardinal components
+	}
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}"
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cca_version}"
 
-	//GECKOLIB3 DEPENDENCIES
-	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.19:3.1.38'
-	// Uncomment the following line to enable the deprecated Fabric API modules.
-	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
+	modImplementation "software.bernie.geckolib:geckolib-fabric-${project.minecraft_version}:${project.geckolib_version}"
 
-	// modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
+}
+
+fabricApi {
+	configureDataGeneration() {
+		client = true
+	}
 }
 
 processResources {

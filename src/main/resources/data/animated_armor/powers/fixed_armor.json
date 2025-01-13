@@ -75,7 +75,5 @@
       }
     ]
   },
-  "execute_chosen_when_orb": true,
-  "name": "Living Armor",
-  "description": "You inhabit a suit of armor. You cannot equip other armors or remove your armor."
+  "execute_chosen_when_orb": true
 }

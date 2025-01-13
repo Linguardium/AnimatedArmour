@@ -20,7 +20,5 @@
   },
   "no_regen": {
     "type": "origins:disable_regen"
-  },
-  "name": "Construct",
-  "description": "Your body doesn't experience hunger, and you don't benefit from natural regeneration."
+  }
 }

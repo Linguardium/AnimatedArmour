@@ -14,7 +14,5 @@
 			"type": "origins:submerged_in",
 			"fluid": "minecraft:water"
 		}
-	},
-	"name": "Heavy Metal",
-	"description": "Your dense body weighs you down in water, but also renders you immune to knockback. You don't need to breathe in water as you have no lungs."
+	}
 }

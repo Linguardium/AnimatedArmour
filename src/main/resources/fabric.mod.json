@@ -24,6 +24,9 @@
     ],
     "client": [
       "com.clarkster.animated_armor.ClientMod"
+    ],
+    "fabric-datagen": [
+      "com.clarkster.animated_armor.AnimatedArmorDatagen"
     ]
   },
   "mixins": [
@@ -31,11 +34,11 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.14.6",
+    "fabricloader": ">=0.16.0",
     "fabric": "*",
-    "minecraft": ">=1.19",
+    "minecraft": ["1.20","1.20.1"],
     "java": ">=17",
-    "origins": ">=1.6.2"
+    "origins": "~1.10.0"
   },
   "suggests": {
     "another-mod": "*"

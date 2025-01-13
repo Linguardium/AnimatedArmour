@@ -5,7 +5,5 @@
 		"ingredient": {
 			"item": "minecraft:shield"
 		}
-		},
-	"name": "Immobile Joints",
-	"description": "Your form is too rigid to use a shield effectively."
+	}
 }

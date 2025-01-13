@@ -11,7 +11,5 @@
       "operation": "set_total",
       "value": 0
     }
-  },
-  "name": "Restless",
-  "description": "You cannot sleep."
+  }
 }
