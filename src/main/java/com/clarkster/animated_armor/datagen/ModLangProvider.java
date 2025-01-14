@@ -2,7 +2,7 @@ package com.clarkster.animated_armor.datagen;
 
 import com.clarkster.animated_armor.ModIdentifiers;
 import com.clarkster.animated_armor.item.ModItems;
-import io.github.apace100.apoli.power.Active;
+import io.github.apace100.apoli.power.PowerType;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.util.Identifier;
@@ -56,8 +56,8 @@ public class ModLangProvider extends FabricLanguageProvider {
         public void addBadgeTranslation(Identifier id, String tooltip) {
             builder.add("badge." + id.getNamespace() + "." + id.getPath() + ".tooltip", tooltip);
         }
-        private void addPowerTranslation(Identifier id, String name, String description) {
-            addNameAndDescriptionTranslation(this::getPowerTranslationKey, id, name, description);
+        private void addPowerTranslation(PowerType<?> powerType, String name, String description) {
+            addNameAndDescriptionTranslation(this::getPowerTranslationKey, powerType.getIdentifier(), name, description);
         }
         private void addOriginTranslation(Identifier id, String name, String description) {
             addNameAndDescriptionTranslation(this::getOriginTranslationKey, id, name, description);

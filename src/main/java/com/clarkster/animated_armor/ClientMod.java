@@ -1,6 +1,5 @@
 package com.clarkster.animated_armor;
 
-import com.clarkster.animated_armor.entity.client.armor.LivingArmorModel;
 import com.clarkster.animated_armor.entity.client.armor.LivingArmorRenderer;
 import com.clarkster.animated_armor.item.ModItems;
 import net.fabricmc.api.ClientModInitializer;

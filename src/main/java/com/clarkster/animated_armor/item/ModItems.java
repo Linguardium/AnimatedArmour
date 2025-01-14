@@ -1,13 +1,10 @@
 package com.clarkster.animated_armor.item;
 
 import com.clarkster.animated_armor.AnimatedArmorMod;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import com.clarkster.animated_armor.item.custom.LivingArmorItem;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.entity.EquipmentSlot;
-import com.clarkster.animated_armor.item.custom.*;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;

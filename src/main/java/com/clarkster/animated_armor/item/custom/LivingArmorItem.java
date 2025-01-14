@@ -1,6 +1,5 @@
 package com.clarkster.animated_armor.item.custom;
 
-import com.clarkster.animated_armor.ModIdentifiers;
 import com.clarkster.animated_armor.entity.client.armor.LivingArmorRenderer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -19,7 +18,6 @@ import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.model.DefaultedGeoModel;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
@@ -39,11 +37,6 @@ public class LivingArmorItem extends ArmorItem implements GeoItem, AnimationCont
         state.getController().setAnimation(RawAnimation.begin().thenPlay("idle"));
         return PlayState.CONTINUE;
     }
-
-//    @Override
-//    public AnimationFactory getFactory() {
-//        return this.factory;
-//    }
 
     @Environment(EnvType.CLIENT)
     @Override
