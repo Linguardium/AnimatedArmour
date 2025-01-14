@@ -30,7 +30,7 @@
     ]
   },
   "mixins": [
-
+    "animated_armor.mixins.json"
   ],
 
   "depends": {
